@@ -17,6 +17,7 @@
     "test:static": "node scripts/qa-static.mjs"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "0.10.21",
     "@mujoco/mujoco": "3.13.0",
     "onnxruntime-web": "1.30.0",
     "three": "0.186.0"

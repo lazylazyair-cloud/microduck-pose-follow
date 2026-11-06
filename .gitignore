@@ -6,4 +6,5 @@ qa-output/
 *.log
 
 public/runtime/
+public/mediapipe/wasm/
 release/

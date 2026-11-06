@@ -272,7 +272,10 @@ function ensurePoseWorker(): Promise<void> {
       }
     }
   };
-  worker.postMessage({ type: "init" });
+  worker.postMessage({
+    type: "init",
+    base: new URL(import.meta.env.BASE_URL, location.href).href,
+  });
   poseWorkerReady = ready.catch((error) => {
     worker.terminate();
     if (poseWorker === worker) poseWorker = null;

@@ -1,5 +1,7 @@
+import { FilesetResolver, PoseLandmarker } from "@mediapipe/tasks-vision";
+
 type PoseMessage =
-  | { type: "init" }
+  | { type: "init"; base: string }
   | { type: "frame"; bitmap: ImageBitmap; timestamp: number; sequence: number }
   | { type: "close" };
 
@@ -13,32 +15,27 @@ const scope = self as unknown as WorkerScope;
 let landmarker: any = null;
 let loading: Promise<void> | null = null;
 
-async function initialize() {
+async function initialize(base: string) {
   if (landmarker) return;
   if (loading) return loading;
   loading = (async () => {
-    const moduleUrl =
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/vision_bundle.mjs";
-    const wasmUrl =
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/wasm";
-    const modelUrl =
-      "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task";
-    const vision = await import(/* @vite-ignore */ moduleUrl);
-    const files = await vision.FilesetResolver.forVisionTasks(wasmUrl);
+    const wasmUrl = new URL("mediapipe/wasm", base).href;
+    const modelUrl = new URL("mediapipe/pose_landmarker_lite.task", base).href;
+    const files = await FilesetResolver.forVisionTasks(wasmUrl);
     const options = {
-      runningMode: "VIDEO",
+      runningMode: "VIDEO" as const,
       numPoses: 1,
       minPoseDetectionConfidence: 0.55,
       minPosePresenceConfidence: 0.55,
       minTrackingConfidence: 0.55,
     };
     try {
-      landmarker = await vision.PoseLandmarker.createFromOptions(files, {
+      landmarker = await PoseLandmarker.createFromOptions(files, {
         ...options,
         baseOptions: { modelAssetPath: modelUrl, delegate: "GPU" },
       });
     } catch {
-      landmarker = await vision.PoseLandmarker.createFromOptions(files, {
+      landmarker = await PoseLandmarker.createFromOptions(files, {
         ...options,
         baseOptions: { modelAssetPath: modelUrl, delegate: "CPU" },
       });
@@ -60,7 +57,7 @@ async function initialize() {
 scope.onmessage = (event: MessageEvent<PoseMessage>) => {
   const message = event.data;
   if (message.type === "init") {
-    void initialize().catch(() => {});
+    void initialize(message.base).catch(() => {});
     return;
   }
   if (message.type === "close") {

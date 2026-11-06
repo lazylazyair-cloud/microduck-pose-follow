@@ -9,6 +9,8 @@ This is an independent port, not an official Pollen Robotics product.
 | Eight foot-mode ONNX policies | [pollen-robotics/microduck-policies](https://huggingface.co/pollen-robotics/microduck-policies/tree/v5) | Apache-2.0 (publisher model card); v5 model files, unchanged; hashes in public/assets-manifest.json |
 | MuJoCo | [google-deepmind/mujoco](https://github.com/google-deepmind/mujoco), Apache-2.0 | Official @mujoco/mujoco 3.13.0 WASM |
 | ONNX Runtime | [microsoft/onnxruntime](https://github.com/microsoft/onnxruntime), MIT | onnxruntime-web 1.30.0 WASM; upstream third-party notices apply |
+| MediaPipe Tasks Vision | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe), Apache-2.0 | tasks-vision 0.10.21 browser module and WASM for on-device pose detection |
+| Pose Landmarker Lite model | [Official MediaPipe model download](https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task) | Model file served from this site for on-device inference |
 | Three.js | [mrdoob/three.js](https://github.com/mrdoob/three.js), MIT | Three.js 0.186.0 and OrbitControls |
 
 Robot resource license is retained at `public/simulation/LICENSE.txt`. Root `LICENSE` carries Apache-2.0. Runtime license copies are under `licenses/`. Build/test tools remain package dependencies with their respective upstream licenses.

@@ -55,7 +55,7 @@ The menu also provides ball placement in front of either foot, speed, gait, foll
 
 ## Pose following
 
-Click **Follow my pose** in the header and grant camera permission. Video frames are processed on-device by MediaPipe Pose Landmarker; the camera feed is neither displayed nor uploaded. The MediaPipe SDK may send performance and usage metrics under its own policy. First use downloads the MediaPipe module, WASM runtime, and lightweight pose model.
+Click **Follow my pose** in the header and grant camera permission. Video frames are processed on-device by MediaPipe Pose Landmarker; the camera feed is neither displayed nor uploaded. The MediaPipe SDK may send performance and usage metrics under its own policy. First use downloads the MediaPipe runtime and lightweight pose model from this site.
 
 - Move closer to / farther from the camera: Microduck walks forward / backward, calibrated from shoulder width.
 - Move left / right in the frame or lean sideways: Microduck turns to follow.
