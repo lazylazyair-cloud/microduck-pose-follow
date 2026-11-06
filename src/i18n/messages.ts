@@ -235,6 +235,8 @@ export const english = {
   "物理状态无效，请重置场景": "Invalid physics state. Reset the scene.",
   "资源下载失败：{0}": "Asset download failed: {0}",
   "资源校验失败：{0}": "Asset integrity check failed: {0}",
+  "当前浏览器未提供 Web Crypto，已跳过本地资源哈希校验。":
+    "Web Crypto is unavailable in this browser. Local asset hash checks were skipped.",
   "正在载入物理引擎…": "Loading the physics engine…",
   资源清单下载失败: "Asset manifest download failed",
   "正在校验机器人与策略…": "Verifying the robot and policies…",

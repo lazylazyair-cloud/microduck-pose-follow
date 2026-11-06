@@ -48,7 +48,7 @@ if errorlevel 1 (
 if not exist "node_modules\vite\bin\vite.js" (
   echo.
   echo [1/2] Installing dependencies. Please wait...
-  call npm.cmd ci
+  call npm.cmd ci --cache "%TEMP%\microduck-npm-cache"
   if errorlevel 1 (
     echo.
     echo ERROR: npm ci failed. Check the network and npm error above.
